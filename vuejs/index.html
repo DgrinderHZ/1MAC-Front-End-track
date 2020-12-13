@@ -1,33 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VueJS</title>
     <style>
-        .red{
+        .red {
             color: red;
         }
 
-        .blue{
+        .blue {
             color: blue;
         }
-        img{
+
+        img {
             height: 150px;
             width: 150px;
         }
+
+        .ar{
+            text-align: right;
+            direction: rtl;
+        }
     </style>
 </head>
-<body>
-   <div id="app">
-    <button @click="is_authenticated = !is_authenticated;">login</button>
-    <h1 v-if="is_authenticated">Loged in</h1>
-    <h1 v-else>Loged out</h1>
-    <h1 :class="{ red: false, blue: true}">{{message}} v-text="message"</h1>
-    <button v-on:click="show">Click me!</button>
-    <img :src="img" alt="None" :title="name">
 
-   </div>
+<body>
+    <main id="app">
+        <h1>Basics:</h1>
+        <div>
+            <button @click="login">
+                <h3 v-if="is_authenticated">Log in</h3>
+                <h3 v-else>Log out</h3>
+            </button>
+            
+            <h4 :class="{ red: false, blue: true}" v-text="message"></h4>
+            {{message}} 
+            <button v-on:click="show">Click me!</button>
+            <img :src="img" alt="None" :title="name">
+        </div>
+        <div :class="{ar: (lang=='ar')}">
+            <!-- assn-->
+            <hr>
+            <button @click="change">
+                {{ lang == 'ar' ? 'English' : 'العربية' }}
+            </button>
+            <h2 v-if="lang == 'en'">English IS GOOD</h2>
+            <h2 v-else>  بالعربية عربي</h2>
+        </div>
+        <h1>Loops:</h1>
+        <div>
+            
+        </div>
+    </main>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
@@ -38,13 +64,28 @@
             message: "Hi, Hassan!",
             img: "images/me.png",
             name: "hassan Zekkouri",
-            is_authenticated: true
-        }, 
-        methods:{
-            show(){
+            is_authenticated: true,
+            lang: 'en',
+        },
+        methods: {
+            show() {
                 alert('Thanks');
             },
+
+            login(){
+                this.is_authenticated = !this.is_authenticated;
+            },
+
+            change(){
+                if(this.lang == 'ar'){
+                    this.lang = 'en';
+                }else{
+                    this.lang = 'ar';
+                }
+            }
+
         }
     })
 </script>
+
 </html>
