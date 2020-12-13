@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <style>
+        .red{
+            color: red;
+        }
+
+        .blue{
+            color: blue;
+        }
+        img{
+            height: 150px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+   <div id="app">
+    <button @click="is_authenticated = !is_authenticated;">login</button>
+    <h1 v-if="is_authenticated">Loged in</h1>
+    <h1 v-else>Loged out</h1>
+    <h1 :class="{ red: false, blue: true}">{{message}} v-text="message"</h1>
+    <button v-on:click="show">Click me!</button>
+    <img :src="img" alt="None" :title="name">
+
+   </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: "Hi, Hassan!",
+            img: "images/me.png",
+            name: "hassan Zekkouri",
+            is_authenticated: true
+        }, 
+        methods:{
+            show(){
+                alert('Thanks');
+            },
+        }
+    })
+</script>
+</html>
