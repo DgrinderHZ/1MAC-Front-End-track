@@ -59,6 +59,10 @@
             </ul>
             <h2 v-text="full_name"></h2>
         </div>
+        <h1>Watch:</h1>
+        <div>
+            <button @click="like" v-text="status"></button> <span v-text="like_counter"></span>
+        </div>
     </main>
 </body>
 
@@ -76,6 +80,8 @@
             x: [1, 2, 3, 4, 5, 6, 7, 8, 9],
             first_name: 'Hassan',
             last_name: 'Zekkouri',
+            status: 'like',
+            like_counter: 0,
         },
         methods: {
             show() {
@@ -91,6 +97,14 @@
                     this.lang = 'en';
                 }else{
                     this.lang = 'ar';
+                }
+            },
+
+            like(){
+                if(this.status == "like"){
+                    this.status = "dislike";
+                }else{
+                    this.status = "like";
                 }
             }
         },
@@ -112,6 +126,15 @@
                 set: function (new_data){
                     this.first_name = new_data.split(' ')[0];
                     this.last_name = new_data.split(' ')[1];
+                }
+            }
+        },
+        watch:{
+            status(val){
+                if(val == 'dislike'){
+                    this.like_counter += 1;
+                }else{
+                    this.like_counter -= 1;
                 }
             }
         }
