@@ -66,6 +66,12 @@
             <button @click="like2" v-text="pagdata.status"></button> <span v-text="like_counter2"></span>
             <p>Old value: <em v-text="old2.status"></em></p>
         </div>
+        <h1>v-model:</h1>
+        <div>
+            <label for="text">Enter something:</label>
+            <input type="text" name="text" id="text" v-model="text">
+            <p v-text="text"></p>
+        </div>
     </main>
 </body>
 
@@ -89,6 +95,7 @@
             pagdata: {status: 'like'},
             like_counter2: 0,
             old2: 0,
+            text: '',
         },
         methods: {
             show() {
