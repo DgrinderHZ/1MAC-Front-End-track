@@ -71,6 +71,12 @@
             <label for="text">Enter something:</label>
             <input type="text" name="text" id="text" v-model="text">
             <p v-text="text"></p>
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" v-model="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <p>Your gender is: <span v-text="gender"></span></p>
         </div>
     </main>
 </body>
@@ -96,6 +102,7 @@
             like_counter2: 0,
             old2: 0,
             text: '',
+            gender: '',
         },
         methods: {
             show() {

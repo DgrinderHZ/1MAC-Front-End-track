@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <main id="app">
+        More here: <a href="https://vuejs.org/v2/guide/events.html" target="_blank">events</a> &
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode" target="_blank">KeyboardEvent.keyCode</a>
+        <ul>
+            <li v-for="(val, i) in list" :key="i" v-text="val"></li>
+        </ul>
+        <label for="item">Enter item:</label>
+        <input type="text" name="item" id="item" v-model="newVal" @keyup.enter="add">
+        <hr>
+        <div>
+            <p>Index | Name</p>
+            <ul>
+                <li v-for="val in names" :key="val.n" >{{val.n}} | {{val.name}}</li>
+            </ul>
+            <label for="name">Enter a name:</label>
+            <input type="text" name="name" id="name" v-model="newV" @keyup.enter="addName">
+            <p style="float: right;">
+                <h4 v-text="counter"></h4>
+                <button @click="start">start</button>
+                <button @click="show = true">stop</button>
+                <h2 v-show="show">The winner is: {{ showWinner }} </h2>
+            </p>
+            
+        </div>
+        
+    </main>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            list: [
+                'a', 'b'
+            ],
+            newVal: '',
+            names: [
+                {n: 1, name: 'Hassan'}, 
+                {n: 2, name: 'Ali'}
+            ],
+            newV: '',
+            counter: 1,
+            show : false,
+
+        }, // end data
+        methods:{
+            add(){
+                this.list.push(this.newVal);
+                this.newVal = '';
+            },
+            addName(){
+                this.names.push({n: this.names.length+1, name:this.newV });
+                this.newV = '';
+            }, 
+            start(){
+                this.show == false;
+                var id = setInterval(() => {
+                    this.counter++;
+                    this.counter == this.names.length + 1 ? this.counter = 1 : this.counter;
+                    this.show == true ? clearInterval(id) : this.show;
+                }, 70)
+            },
+        }, // end methods
+        computed:{
+            showWinner(){
+                return this.names[this.counter-1].name;
+            }
+        }
+    })
+</script>
+
+</html>
