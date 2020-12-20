@@ -67,11 +67,11 @@
                 this.newV = '';
             }, 
             start(){
-                this.show == false;
+                this.show = false;
                 var id = setInterval(() => {
                     this.counter++;
-                    this.counter == this.names.length + 1 ? this.counter = 1 : this.counter;
-                    this.show == true ? clearInterval(id) : this.show;
+                    (this.counter == this.names.length + 1 )? this.counter = 1 : this.counter;
+                    (this.show == true) ? clearInterval(id) : this.show;
                 }, 70)
             },
         }, // end methods
