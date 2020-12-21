@@ -15,7 +15,8 @@
         More here: <a href="https://vuejs.org/v2/guide/events.html" target="_blank">events</a> &
         <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode" target="_blank">KeyboardEvent.keyCode</a>
         
-        <card />
+        <card title="A card :)" img="images/sky.png" desc="My skypiea channel!"></card>
+        <card title="A card :) 2" img="images/me.png" desc="My skypiea channel! hhh"></card>
         
     </main>
 </body>
@@ -39,16 +40,18 @@
             'card': {
                 data(){
                     return {
-                        title: 'A card',
+                        
 
                     }
                 },
+                props: ['title', 'img', 'desc'],
                 template: ' <div> \
                             <h1 v-text="title"></h1>\
-                            <img src="images/sky.png" alt="">\
-                            <p>My skypiea channel!</p>\
+                            <img :src="img" alt="">\
+                            <p v-text="desc"></p>\
                             </div>\
-                            '
+                            ',
+                
             }
         },
     })
