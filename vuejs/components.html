@@ -12,16 +12,15 @@
 
 <body>
     <main id="app">
-        More here: <a href="https://vuejs.org/v2/guide/events.html" target="_blank">events</a> &
-        <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode" target="_blank">KeyboardEvent.keyCode</a>
-        
-        <card title="A card :)" img="images/sky.png" desc="My skypiea channel!"></card>
+        More here: <a href="https://vuejs.org/v2/guide/components.html" target="_blank">events</a> 
+
+        <card title="A card :)" img="images/sky.png" desc="My skypiea channel!" :likes="2"></card>
         <card title="A card :) 2" img="images/me.png" desc="My skypiea channel! hhh"></card>
         
     </main>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script>
     var app = new Vue({
         el: "#app",
@@ -44,11 +43,19 @@
 
                     }
                 },
-                props: ['title', 'img', 'desc'],
+                props: {
+                    'title': {type: String, required: true},
+                     'img': {type: String}, 
+                     'desc': {type: String},
+                     'likes': {type: Number, default: 0, validator: function(val){
+                         return val <= 10;
+                     }}
+                },
                 template: ' <div> \
                             <h1 v-text="title"></h1>\
                             <img :src="img" alt="">\
                             <p v-text="desc"></p>\
+                            <h5 v-text="likes"></h5>\
                             </div>\
                             ',
                 
