@@ -15,9 +15,9 @@
     <main id="app">
         More here: <a href="https://vuejs.org/v2/guide/components.html" target="_blank">events</a> 
 
-        <card title="A card :)" img="images/sky.png" desc="My skypiea channel!" :id="1"></card>
-        <card title="A card :) 2" img="images/me.png" desc="My skypiea channel! hhh"></card>
-        
+        <card @send="likes++" title="A card :)" img="images/sky.png" desc="My skypiea channel!" :id="1"></card>
+        <card @send="likes++" title="A card :) 2" img="images/me.png" desc="My skypiea channel! hhh"></card>
+        <p>likes sum: {{likes}}</p>
     </main>
 </body>
 
@@ -26,8 +26,7 @@
     var app = new Vue({
         el: "#app",
         data: {
-           
-
+            likes: 0,
         }, // end data
         methods:{
             addLike(){
@@ -55,7 +54,7 @@
                 },
                 template: ' <div> Id: {{id}}.\
                             <h1 v-text="title"></h1>\
-                            <img :src="img" alt="" style="heigth:150px; width:150px;">\
+                            <img :src="img" alt="" style="heigth:50px; width:50px;">\
                             <p v-text="desc"></p>\
                             <button @click="addLike()">like</button> <span v-text="likes"></span>\
                             </div>\
@@ -63,6 +62,7 @@
                 methods:{
                     addLike(){
                         this.likes++;
+                        this.$emit('send');
                     }
                 }, // end card methods
                 
