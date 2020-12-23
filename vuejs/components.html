@@ -11,10 +11,11 @@
 </head>
 
 <body>
+    
     <main id="app">
         More here: <a href="https://vuejs.org/v2/guide/components.html" target="_blank">events</a> 
 
-        <card title="A card :)" img="images/sky.png" desc="My skypiea channel!" :likes="2"></card>
+        <card title="A card :)" img="images/sky.png" desc="My skypiea channel!" :id="1"></card>
         <card title="A card :) 2" img="images/me.png" desc="My skypiea channel! hhh"></card>
         
     </main>
@@ -29,7 +30,9 @@
 
         }, // end data
         methods:{
-            
+            addLike(){
+                this.likes++;
+            }
         }, // end methods
         computed:{
             
@@ -39,28 +42,32 @@
             'card': {
                 data(){
                     return {
-                        
-
+                        likes: 0,
                     }
                 },
                 props: {
                     'title': {type: String, required: true},
                      'img': {type: String}, 
                      'desc': {type: String},
-                     'likes': {type: Number, default: 0, validator: function(val){
+                     'id': {type: Number, default: 0, validator: function(val){
                          return val <= 10;
                      }}
                 },
-                template: ' <div> \
+                template: ' <div> Id: {{id}}.\
                             <h1 v-text="title"></h1>\
-                            <img :src="img" alt="">\
+                            <img :src="img" alt="" style="heigth:150px; width:150px;">\
                             <p v-text="desc"></p>\
-                            <h5 v-text="likes"></h5>\
+                            <button @click="addLike()">like</button> <span v-text="likes"></span>\
                             </div>\
-                            ',
+                        ',
+                methods:{
+                    addLike(){
+                        this.likes++;
+                    }
+                }, // end card methods
                 
-            }
-        },
+            } 
+        },// end components
     })
 </script>
 
